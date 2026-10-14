@@ -55,3 +55,19 @@ API does not expose uploaded file contents.
 
 This starter does not include user authentication or authorization. Do not
 deploy it publicly with real resumes until access controls are added.
+
+## Deploy to Vercel
+
+Create two Vercel projects from this repository:
+
+1. Set the frontend project's **Root Directory** to `frontend`. Its
+   `vercel.json` builds the Vite app and publishes `dist`.
+2. Set the backend project's **Root Directory** to `backend`. Its
+   `vercel.json` routes requests to the Express serverless function.
+3. In the backend project's environment variables, set `MONGODB_URI` and
+   `FRONTEND_URL` to your MongoDB connection string and deployed frontend URL.
+   Set these for each Vercel environment you use.
+4. In the frontend project's environment variables, set
+   `VITE_API_BASE_URL` to the deployed backend origin (for example,
+   `https://your-api.vercel.app`), then redeploy the frontend. Vite embeds
+   `VITE_` variables at build time.

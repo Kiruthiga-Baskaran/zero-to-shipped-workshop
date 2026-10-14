@@ -5,3 +5,5 @@ I want to convert this entire project into a MERN project. I want you to move th
 The application should take resume PDF and a JD for comparison, AI part will be added later
  
 backend folder should container server.js, routes folder, controller folder, service folder, config folder, middleware folder and utils.js
+
+add vercel.json file to backend and frontend folder, I am going to make two projects in vercel for deployment.

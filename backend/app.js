@@ -3,6 +3,7 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const connectDatabase = require('./config/database');
 const comparisonRoutes = require('./routes/comparisonRoutes');
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 
@@ -19,6 +20,10 @@ app.use('/api', rateLimit({
   standardHeaders: 'draft-7',
   legacyHeaders: false,
 }));
+
+app.use('/api', (req, res, next) => {
+  connectDatabase().then(() => next(), next);
+});
 
 app.get('/api/health', (req, res) => {
   const databaseConnected = mongoose.connection.readyState === 1;

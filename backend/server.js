@@ -12,7 +12,11 @@ async function startServer() {
   });
 }
 
-startServer().catch((error) => {
-  console.error('Failed to start the API:', error);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  startServer().catch((error) => {
+    console.error('Failed to start the API:', error);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = app;
